@@ -1,0 +1,209 @@
+:root {
+  --space-1: 0.5rem;
+  --space-2: 0.75rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2rem;
+
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --border: #334155;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --accent: #38bdf8;
+  --success: #22c55e;
+  --warning: #f59e0b;
+
+  --radius: 0.75rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background-color: var(--bg);
+  color: var(--text-primary);
+}
+
+.dashboard-shell {
+  width: min(1200px, 100% - 2rem);
+  margin-inline: auto;
+  padding-block: var(--space-5);
+}
+
+.dashboard-header {
+  margin-bottom: var(--space-4);
+}
+
+.dashboard-title {
+  margin: 0 0 var(--space-1);
+  font-size: 2rem;
+}
+
+.dashboard-subtitle {
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+/* Explicit dashboard grid */
+.dashboard-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, minmax(150px, auto));
+
+  grid-template-areas:
+    "chart chart stat-a feed"
+    "chart chart stat-b feed"
+    "status status status feed";
+
+  gap: var(--space-3);
+}
+
+/* Shared card styles */
+.dash-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+}
+
+.dash-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.dash-card__header h3 {
+  margin: 0;
+}
+
+/* Named grid areas */
+.card-chart {
+  grid-area: chart;
+}
+
+.card-stat-a {
+  grid-area: stat-a;
+}
+
+.card-stat-b {
+  grid-area: stat-b;
+}
+
+.card-feed {
+  grid-area: feed;
+}
+
+.card-status {
+  grid-area: status;
+}
+
+/* Metric card alignment */
+.card-stat-a,
+.card-stat-b {
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.stat-label {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.stat-trend {
+  font-size: 0.85rem;
+}
+
+.trend--up {
+  color: var(--success);
+}
+
+.trend--down {
+  color: var(--success);
+}
+
+/* Chart */
+.placeholder-chart {
+  display: grid;
+  align-items: end;
+  min-height: 260px;
+  margin-top: var(--space-3);
+}
+
+.bar-chart-mock {
+  width: 100%;
+  height: 70%;
+  border-radius: var(--radius);
+  background:
+    repeating-linear-gradient(
+      to right,
+      var(--accent) 0,
+      var(--accent) 8%,
+      transparent 8%,
+      transparent 12%
+    );
+}
+
+/* Live indicator */
+.status-indicator {
+  padding: var(--space-1) var(--space-2);
+  border-radius: 999px;
+  background-color: var(--success);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+/* Activity feed */
+.activity-list {
+  margin: var(--space-3) 0 0;
+  padding-left: var(--space-4);
+  color: var(--text-secondary);
+}
+
+.activity-list li {
+  margin-bottom: var(--space-3);
+}
+
+.activity-list strong {
+  color: var(--text-primary);
+}
+
+/* Status card */
+.status-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.pill {
+  padding: var(--space-1) var(--space-3);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.pill--online {
+  background-color: var(--success);
+  color: #ffffff;
+}
+
+.pill--degraded {
+  background-color: var(--warning);
+  color: #111827;
+}
