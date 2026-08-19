@@ -49,11 +49,11 @@ body {
   color: var(--text-secondary);
 }
 
-/* Explicit dashboard grid */
+/* explicit dashboard grid */
 .dashboard-grid {
   display: grid;
 
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   grid-template-rows: repeat(3, minmax(150px, auto));
 
   grid-template-areas:
@@ -64,7 +64,7 @@ body {
   gap: var(--space-3);
 }
 
-/* Shared card styles */
+/* shared card styles */
 .dash-card {
   background-color: var(--card-bg);
   border: 1px solid var(--border);
@@ -83,7 +83,7 @@ body {
   margin: 0;
 }
 
-/* Named grid areas */
+/* named grid areas */
 .card-chart {
   grid-area: chart;
 }
@@ -104,7 +104,7 @@ body {
   grid-area: status;
 }
 
-/* Metric card alignment */
+/* metric card alignment */
 .card-stat-a,
 .card-stat-b {
   display: grid;
@@ -136,7 +136,7 @@ body {
   color: var(--success);
 }
 
-/* Chart */
+/* chart */
 .placeholder-chart {
   display: grid;
   align-items: end;
@@ -148,6 +148,7 @@ body {
   width: 100%;
   height: 70%;
   border-radius: var(--radius);
+
   background:
     repeating-linear-gradient(
       to right,
@@ -158,7 +159,7 @@ body {
     );
 }
 
-/* Live indicator */
+/* live indicator */
 .status-indicator {
   padding: var(--space-1) var(--space-2);
   border-radius: 999px;
@@ -168,7 +169,7 @@ body {
   font-weight: 700;
 }
 
-/* Activity feed */
+/* activity feed */
 .activity-list {
   margin: var(--space-3) 0 0;
   padding-left: var(--space-4);
@@ -183,7 +184,7 @@ body {
   color: var(--text-primary);
 }
 
-/* Status card */
+/* status card */
 .status-pills {
   display: flex;
   flex-wrap: wrap;
@@ -206,4 +207,33 @@ body {
 .pill--degraded {
   background-color: var(--warning);
   color: #111827;
+}
+
+/* tablet */
+@media (max-width: 900px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: auto;
+
+    grid-template-areas:
+      "chart chart"
+      "stat-a stat-b"
+      "feed feed"
+      "status status";
+  }
+}
+
+/* mobile */
+@media (max-width: 600px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+
+    grid-template-areas:
+      "chart"
+      "stat-a"
+      "stat-b"
+      "feed"
+      "status";
+  }
 }
